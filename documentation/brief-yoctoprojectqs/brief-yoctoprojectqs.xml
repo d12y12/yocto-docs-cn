@@ -4,7 +4,7 @@
 
 <article id='brief-yocto-project-qs-intro'>
     <articleinfo>
-        <title>Yocto Project Quick Build</title>
+        <title>Yocto项目快速构建</title>
 
         <copyright>
             <year>&COPYRIGHT_YEAR;</year>
@@ -27,119 +27,100 @@
     </articleinfo>
 
     <section id='brief-welcome'>
-        <title>Welcome!</title>
+        <title>欢迎!</title>
 
         <para>
-            Welcome!
-            This short document steps you through the process for a typical
-            image build using the Yocto Project.
-            The document also introduces how to configure a build for specific
-            hardware.
-            You will use Yocto Project to build a reference embedded OS
-            called Poky.
-            <note><title>Notes</title>
+            欢迎!
+            这篇简短的文档将引导您使用Yocto项目进行一次典型的映像构建过程。
+            同时，本文还介绍了如何为特定硬件配置构建。
+            您将使用Yocto项目构建一个名为Poky的参考嵌入式操作系统。
+            <note><title>注意</title>
                 <itemizedlist>
                     <listitem><para>
-                        The examples in this paper assume you are using a
-                        native Linux system running a recent Ubuntu Linux
-                        distribution.
-                        If the machine you want to use Yocto Project on to
-                        build an image
-                        (<ulink url='&YOCTO_DOCS_REF_URL;#hardware-build-system-term'>build host</ulink>)
-                        is not a native Linux system, you can
-                        still perform these steps by using CROss PlatformS
-                        (CROPS) and setting up a Poky container.
-                        See the
-                        <ulink url='&YOCTO_DOCS_DEV_URL;#setting-up-to-use-crops'>Setting Up to Use CROss PlatformS (CROPS)</ulink>"
-                        section in the Yocto Project Development Tasks Manual for more
-                        information.
+                        本文中的示例假设您使用的机器运行原生Linux系统如最新的Ubuntu发行版。
+                        如果您使用构建Yocto项目映像的机器
+                        (<ulink url='&YOCTO_DOCS_REF_URL;#hardware-build-system-term'>构建主机</ulink>)
+                        不是原生Linux系统, 您可以使用CROss PlatformS
+                        (CROPS) 并配置一个Poky容器来执行这些步骤。
+                        了解更多信息，请参阅“Yocto项目开发任务手册”的
+                        "<ulink url='&YOCTO_DOCS_DEV_URL;#setting-up-to-use-crops'>设置 CROss PlatformS (CROPS)</ulink>"
+                        部分。
                         </para></listitem>
                     <listitem><para>
-                        You may use Windows Subsystem For Linux v2 to set up a build
-                        host using Windows 10.
-                        <note>
-                          The Yocto Project is not compatible with WSLv1, it is
-                          compatible but not officially supported nor validated
-                          with WSLv2, if you still decide to use WSL please upgrade
-                          to WSLv2.
+                        您可以使用 Windows Subsystem For Linux v2在Windows 10系统上设置一个构建主机。
+                        <note><title>注意</title>
+                          Yocto项目与WSLv1不兼容，与WSLv2兼容但并非官方支持或者验证过，如果您决定使用WSL，
+                          请升级到WSLv2。
                         </note>
-                        See the
-                        <ulink url='&YOCTO_DOCS_DEV_URL;#setting-up-to-use-wsl'>Setting Up to Use Windows Subsystem For Linux</ulink>"
-                        section in the Yocto Project Development Tasks Manual for more
-                        information.
+                        了解更多信息，请参阅“Yocto项目开发任务手册”的
+                        "<ulink url='&YOCTO_DOCS_DEV_URL;#setting-up-to-use-wsl'>设置 Windows Subsystem For Linux</ulink>"
+                        部分。
                         </para></listitem>
                 </itemizedlist>
             </note>
         </para>
 
         <para>
-            If you want more conceptual or background information on the
-            Yocto Project, see the
-            <ulink url='&YOCTO_DOCS_OM_URL;'>Yocto Project Overview and Concepts Manual</ulink>.
+            如果您想了解有关Yocto项目的更多概念或背景信息，请参阅
+            <ulink url='&YOCTO_DOCS_OM_URL;'>Yocto项目概述和概念手册</ulink>.
         </para>
     </section>
 
     <section id='brief-compatible-distro'>
-        <title>Compatible Linux Distribution</title>
+        <title>兼容的Linux发行版</title>
 
         <para>
-            Make sure your
-            <ulink url='&YOCTO_DOCS_REF_URL;#hardware-build-system-term'>build host</ulink>
-            meets the following requirements:
+            确认您的
+            <ulink url='&YOCTO_DOCS_REF_URL;#hardware-build-system-term'>构建主机</ulink>
+            符合下列要求:
             <itemizedlist>
                 <listitem><para>
-                    50 Gbytes of free disk space
+                    50 Gbytes 的磁盘可用空间
                     </para></listitem>
                 <listitem><para>
-                    Runs a supported Linux distribution (i.e. recent releases of
-                    Fedora, openSUSE, CentOS, Debian, or Ubuntu). For a list of
-                    Linux distributions that support the Yocto Project, see the
-                    "<ulink url='&YOCTO_DOCS_REF_URL;#detailed-supported-distros'>Supported Linux Distributions</ulink>"
-                    section in the Yocto Project Reference Manual.
-                    For detailed information on preparing your build host, see
-                    the
-                    "<ulink url='&YOCTO_DOCS_DEV_URL;#dev-preparing-the-build-host'>Preparing the Build Host</ulink>"
-                    section in the Yocto Project Development Tasks Manual.
+                    运行受支持的Linux发行版(如Fedora, openSUSE, CentOS, Debian, 或Ubuntu的最新版本)。
+                    有关支持Yocto项目的Linux发行版列表，请参阅“Yocto项目参考手册”的
+                    "<ulink url='&YOCTO_DOCS_REF_URL;#detailed-supported-distros'>受支持的Linux发行版</ulink>"
+                    部分。
+                    有关准备构建主机的详细信息，请参阅“Yocto项目开发任务手册”的
+                    "<ulink url='&YOCTO_DOCS_DEV_URL;#dev-preparing-the-build-host'>准备构建主机</ulink>"
+                    部分。
                     </para></listitem>
                 <listitem><para>
                     <itemizedlist>
                         <listitem><para>
-                            Git 1.8.3.1 or greater
+                            Git 1.8.3.1 或更高版本
                             </para></listitem>
                         <listitem><para>
-                            tar 1.28 or greater
+                            tar 1.28 或更高版本
                             </para></listitem>
                         <listitem><para>
-                            Python 3.5.0 or greater.
+                            Python 3.5.0 或更高版本
                         </para></listitem>
                         <listitem><para>
-                            gcc 5.0 or greater.
+                            gcc 5.0 或更高版本
                         </para></listitem>
                     </itemizedlist>
-                    If your build host does not meet any of these three listed
-                    version requirements, you can take steps to prepare the
-                    system so that you can still use the Yocto Project.
-                    See the
-                    "<ulink url='&YOCTO_DOCS_REF_URL;#required-git-tar-python-and-gcc-versions'>Required Git, tar, Python and gcc Versions</ulink>"
-                    section in the Yocto Project Reference Manual for information.
+                    如果构建主机不满足这三个列出的版本要求中的任何一个，
+                    您需要做一些准备工作来满足Yocto项目使用要求，
+                    请参阅“Yocto项目参考手册”的
+                    "<ulink url='&YOCTO_DOCS_REF_URL;#required-git-tar-python-and-gcc-versions'>Git, tar, Python和gcc的版本需求</ulink>"
+                    部分。
                     </para></listitem>
             </itemizedlist>
         </para>
     </section>
 
     <section id='brief-build-system-packages'>
-        <title>Build Host Packages</title>
+        <title>构建主机软件包</title>
 
         <para>
-            You must install essential host packages on your
-            build host.
-            The following command installs the host packages based on an
-            Ubuntu distribution:
-            <note>
-                For host package requirements on all supported Linux
-                distributions, see the
-                "<ulink url='&YOCTO_DOCS_REF_URL;#required-packages-for-the-build-host'>Required Packages for the Build Host</ulink>"
-                section in the Yocto Project Reference Manual.
+            您必须在构建主机上安装必要的主机软件包。
+            以下命令安装基于Ubuntu发行版主机软件包：
+            <note><title>注意</title>
+                更多关于受支持的Linux发行版软件包信息，请参阅“Yocto项目参考手册”的
+                "<ulink url='&YOCTO_DOCS_REF_URL;#required-packages-for-the-build-host'>构建主机软件包需求</ulink>"
+                部分。
             </note>
             <literallayout class='monospaced'>
      $ sudo apt-get install &UBUNTU_HOST_PACKAGES_ESSENTIAL;
@@ -148,14 +129,11 @@
     </section>
 
     <section id='brief-use-git-to-clone-poky'>
-        <title>Use Git to Clone Poky</title>
+        <title>使用Git克隆Poky</title>
 
         <para>
-            Once you complete the setup instructions for your machine,
-            you need to get a copy of the Poky repository on your build
-            host.
-            Use the following commands to clone the Poky
-            repository.
+            完成构建主机的设置后，需要在构建主机上获取Poky库的副本。
+            使用以下命令克隆Poky库。
             <literallayout class='monospaced'>
      $ git clone git://git.yoctoproject.org/poky
      Cloning into 'poky'...
@@ -166,8 +144,7 @@
      Resolving deltas: 100% (323116/323116), done.
      Checking connectivity... done.
             </literallayout>
-            Move to the <filename>poky</filename> directory and take a look
-            at the tags:
+            移动到 <filename>poky</filename> 目录并查看标签:
             <literallayout class='monospaced'>
      $ cd poky
      $ git fetch --tags
@@ -189,51 +166,43 @@
      yocto-2.7
      yocto_1.5_M5.rc8
             </literallayout>
-            For this example, check out the branch based on the
-            &DISTRO_REL_TAG; release:
+            对于本示例, 检出基于
+            &DISTRO_REL_TAG; 版本的分支:
             <literallayout class='monospaced'>
      $ git checkout tags/&DISTRO_REL_TAG; -b my-&DISTRO_REL_TAG;
      Switched to a new branch 'my-&DISTRO_REL_TAG;'
             </literallayout>
-            The previous Git checkout command creates a local branch
-            named my-&DISTRO_REL_TAG;. The files available to you in that
-            branch exactly match the repository's files in the
-            "&DISTRO_NAME_NO_CAP;" development branch at the time of the
-            Yocto Project &DISTRO_REL_TAG; release.
+            刚刚的 Git checkout 命令创建一个名为
+            my-&DISTRO_REL_TAG; 的本地分支。 该分支的文件与仓库中
+            "&DISTRO_NAME_NO_CAP;" 开发分支发布
+            Yocto项目 &DISTRO_REL_TAG; 时的文件完全一致。
         </para>
 
         <para>
-            For more options and information about accessing Yocto
-            Project related repositories, see the
-            "<ulink url='&YOCTO_DOCS_DEV_URL;#locating-yocto-project-source-files'>Locating Yocto Project Source Files</ulink>"
-            section in the Yocto Project Development Tasks Manual.
+            有关如何访问Yocto项目相关库的更多选项和信息，请参阅“Yocto项目开发任务手册”的
+            "<ulink url='&YOCTO_DOCS_DEV_URL;#locating-yocto-project-source-files'>查找Yocto项目源文件</ulink>"
+            部分。
         </para>
     </section>
 
     <section id='brief-building-your-image'>
-        <title>Building Your Image</title>
+        <title>构建您的镜像</title>
 
         <para>
-            Use the following steps to build your image.
-            The build process creates an entire Linux distribution, including
-            the toolchain, from source.
-            <note>
+            使用下面的步骤构建您的镜像。
+            构建过程从源代码开始创建一个完整的Linux发行版，包含工具链。
+            <note><title>注意</title>
                 <itemizedlist>
                     <listitem><para>
-                        If you are working behind a firewall and your build
-                        host is not set up for proxies, you could encounter
-                        problems with the build process when fetching source
-                        code (e.g. fetcher failures or Git failures).
+                        如果您工作在防火墙后并且没有为构建主机设置代理，
+                        在构建过程中可能会遇到获取源代码的问题（例如，获取器（fetcher）失败或者Git失败）。
                         </para></listitem>
                     <listitem><para>
-                        If you do not know your proxy settings, consult your
-                        local network infrastructure resources and get that
-                        information.
-                        A good starting point could also be to check your
-                        web browser settings.
-                        Finally, you can find more information on the
+                        如果您不知道代理设置，请咨询提供本地网络架构的服务人员并获取该信息。
+                        另一个不错的方法是查看您的Web浏览器的设置。
+                        最后，您可以在Yocto项目的Wiki页面
                         "<ulink url='https://wiki.yoctoproject.org/wiki/Working_Behind_a_Network_Proxy'>Working Behind a Network Proxy</ulink>"
-                        page of the Yocto Project Wiki.
+                        上找到更多信息。
                         </para></listitem>
                 </itemizedlist>
             </note>
@@ -242,11 +211,10 @@
         <para>
             <orderedlist>
                 <listitem><para>
-                    <emphasis>Initialize the Build Environment:</emphasis>
-                    From within the <filename>poky</filename> directory, run the
+                    <emphasis>初始化构建环境:</emphasis>
+                    在 <filename>poky</filename> 目录中，运行
                     <ulink url='&YOCTO_DOCS_REF_URL;#structure-core-script'><filename>&OE_INIT_FILE;</filename></ulink>
-                    environment setup script to define Yocto Project's
-                    build environment on your build host.
+                    环境设置脚本来定义您构建主机上的Yocto项目构建环境。
                     <literallayout class='monospaced'>
      $ cd ~/poky
      $ source &OE_INIT_FILE;
@@ -279,34 +247,25 @@
 
      You can also run generated qemu images with a command like 'runqemu qemux86-64'
                     </literallayout>
-                    Among other things, the script creates the
-                    <ulink url='&YOCTO_DOCS_REF_URL;#build-directory'>Build Directory</ulink>,
-                    which is <filename>build</filename> in this case
-                    and is located in the
-                    <ulink url='&YOCTO_DOCS_REF_URL;#source-directory'>Source Directory</ulink>.
-                    After the script runs, your current working directory
-                    is set to the Build Directory.
-                    Later, when the build completes, the Build Directory
-                    contains all the files created during the build.
+                    除此之外，该脚本会创建一个
+                    <ulink url='&YOCTO_DOCS_REF_URL;#build-directory'>构建目录</ulink>,
+                    在本例中构建目录名为 <filename>build</filename> 位于
+                    <ulink url='&YOCTO_DOCS_REF_URL;#source-directory'>源文件目录</ulink>。
+                    脚本执行后，您的当前工作目录将变为构建目录。
+                    随后，当构建完成，构建目录会包含构建过程中产生的所有文件。
                     </para></listitem>
                 <listitem><para id='conf-file-step'>
-                    <emphasis>Examine Your Local Configuration File:</emphasis>
-                    When you set up the build environment, a local
-                    configuration file named
-                    <filename>local.conf</filename> becomes available in
-                    a <filename>conf</filename> subdirectory of the
-                    Build Directory.
-                    For this example, the defaults are set to build
-                    for a <filename>qemux86</filename> target, which is
-                    suitable for emulation.
-                    The package manager used is set to the RPM package
-                    manager.
-                    <tip>
-                        You can significantly speed up your build and guard
-                        against fetcher failures by using mirrors.
-                        To use mirrors, add these lines to your
-                        <filename>local.conf</filename> file in the Build
-                        directory:
+                    <emphasis>检查您的本地配置文件:</emphasis>
+                    当您设置构建环境时，将在构建目录中的 <filename>conf</filename> 
+                    文件夹创建一个名为
+                    <filename>local.conf</filename> 的本地配置文件。
+                    在本例中，默认值被设置为构建一个仿真目标
+                    <filename>qemux86</filename> 。
+                    包管理器被设置为 RPM 包管理器。
+                    <tip><title>提示</title>
+                        通过使用镜像（mirrors），您可以显著加速构建并防止获取器失败。
+                        要使用镜像，请将这些行添加到您的
+                        <filename>local.conf</filename> 文件中:
                         <literallayout class='monospaced'>
      SSTATE_MIRRORS = "\
      file://.* http://sstate.yoctoproject.org/dev/PATH;downloadfilename=PATH \n \
@@ -314,92 +273,78 @@
      file://.* http://sstate.yoctoproject.org/&YOCTO_DOC_VERSION;/PATH;downloadfilename=PATH \n \
      "
                         </literallayout>
-                        The previous examples showed how to add sstate
-                        paths for Yocto Project &YOCTO_DOC_VERSION_MINUS_ONE;,
-                        &YOCTO_DOC_VERSION;, and a development area.
-                        For a complete index of sstate locations, see
+                        上面的例子展示如何将 sstate 路径添加到
+                        Yocto项目 &YOCTO_DOC_VERSION_MINUS_ONE;,
+                        &YOCTO_DOC_VERSION;, 及一个开发分支。
+                        有关sstate位置的完整索引，请参阅
                         <ulink url='http://sstate.yoctoproject.org/'></ulink>.
                     </tip>
                     </para></listitem>
                 <listitem><para>
-                    <emphasis>Start the Build:</emphasis>
-                    Continue with the following command to build an OS image
-                    for the target, which is
-                    <filename>core-image-sato</filename> in this example:
+                    <emphasis>启动构建:</emphasis>
+                    继续使用以下命令为目标构建操作系统镜像，本例中目标为
+                    <filename>core-image-sato</filename> :
                     <literallayout class='monospaced'>
      $ bitbake core-image-sato
                     </literallayout>
-                    For information on using the
-                    <filename>bitbake</filename> command, see the
+                    有关使用
+                    <filename>bitbake</filename> 命令的信息, 请参阅“Yocto项目概述和概念手册”的
                     "<ulink url='&YOCTO_DOCS_OM_URL;#usingpoky-components-bitbake'>BitBake</ulink>"
-                    section in the Yocto Project Overview and Concepts Manual,
-                    or see the
-                    "<ulink url='&YOCTO_DOCS_BB_URL;#bitbake-user-manual-command'>BitBake Command</ulink>"
-                    section in the BitBake User Manual.
+                    部分,
+                    或者参阅“BitBake用户手册”的
+                    "<ulink url='&YOCTO_DOCS_BB_URL;#bitbake-user-manual-command'>BitBake命令</ulink>"
+                    部分。
                     </para></listitem>
                 <listitem><para>
-                    <emphasis>Simulate Your Image Using QEMU:</emphasis>
-                    Once this particular image is built, you can start
-                    QEMU, which is a Quick EMUlator that ships with
-                    the Yocto Project:
+                    <emphasis>使用QEMU仿真您的镜像:</emphasis>
+                    当这个镜像构建完成后，您可以启动QEMU，它是Yocto项目附带的快速仿真器（Quick EMUlator）:
                     <literallayout class='monospaced'>
      $ runqemu qemux86-64
                     </literallayout>
-                    If you want to learn more about running QEMU, see the
-                    "<ulink url="&YOCTO_DOCS_DEV_URL;#dev-manual-qemu">Using the Quick EMUlator (QEMU)</ulink>"
-                    chapter in the Yocto Project Development Tasks Manual.
+                    如果您想了解有关运行QEMU的更多信息，请参阅“Yocto项目开发任务手册”的
+                    "<ulink url="&YOCTO_DOCS_DEV_URL;#dev-manual-qemu">使用快速仿真器(QEMU)</ulink>"
+                    部分。
                     </para></listitem>
                 <listitem><para>
-                    <emphasis>Exit QEMU:</emphasis>
-                    Exit QEMU by either clicking on the shutdown icon or by
-                    typing <filename>Ctrl-C</filename> in the QEMU
-                    transcript window from which you evoked QEMU.
+                    <emphasis>退出QEMU:</emphasis>
+                    通过点击关闭图标或者在正在运行的QEMU窗口键入 <filename>Ctrl-C</filename> 来退出QEMU。
                     </para></listitem>
             </orderedlist>
         </para>
     </section>
 
     <section id='customizing-your-build-for-specific-hardware'>
-        <title>Customizing Your Build for Specific Hardware</title>
+        <title>为特定硬件定制您的构建</title>
 
         <para>
-            So far, all you have done is quickly built an image suitable
-            for emulation only.
-            This section shows you how to customize your build for specific
-            hardware by adding a hardware layer into the Yocto Project
-            development environment.
+            到目前为止，您已经快速构建了一个适用于仿真的镜像。
+            本章会向您展示如何在Yocto项目开发环境中添加硬件层, 借此实现为特定硬件定制您的构建。
         </para>
 
         <para>
-            In general, layers are repositories that contain related sets of
-            instructions and configurations that tell the Yocto Project what
-            to do.
-            Isolating related metadata into functionally specific layers
-            facilitates modular development and makes it easier to reuse the
-            layer metadata.
-            <note>
-                By convention, layer names start with the string "meta-".
+            通常，层是包含相关指令集和配置的库，这些指令和配置告诉Yocto项目要执行的操作。
+            将相关元数据隔离到按功能区分的特定层中，有助于模块化开发，并且使层的元数据更容易重用。
+            <note><title>注意</title>
+                按照惯例，层的名字以字符串 "meta-" 开头。
             </note>
         </para>
 
         <para>
-            Follow these steps to add a hardware layer:
+            按照以下步骤添加一个硬件层:
             <orderedlist>
                 <listitem><para>
-                    <emphasis>Find a Layer:</emphasis>
-                    Lots of hardware layers exist.
-                    The Yocto Project
-                    <ulink url='&YOCTO_GIT_URL;'>Source Repositories</ulink>
-                    has many hardware layers.
-                    This example adds the
+                    <emphasis>查找一个层:</emphasis>
+                    存在大量硬件层。
+                    Yocto项目
+                    <ulink url='&YOCTO_GIT_URL;'>源存储库</ulink>
+                    中有许多硬件层。
+                    本例添加
                     <ulink url='https://github.com/kraj/meta-altera'>meta-altera</ulink>
-                    hardware layer.
+                    硬件层。
                     </para></listitem>
                 <listitem><para>
-                    <emphasis>Clone the Layer</emphasis>
-                    Use Git to make a local copy of the layer on your machine.
-                    You can put the copy in the top level of the copy of the
-                    Poky repository created earlier:
+                    <emphasis>克隆层</emphasis>
+                    使用Git在您的机器上创建层的本地副本。您可以将副本放在先前创建的Poky库副本的顶层目录 :
                     <literallayout class='monospaced'>
      $ cd ~/poky
      $ git clone https://github.com/kraj/meta-altera.git
@@ -411,39 +356,32 @@
      Resolving deltas: 100% (13385/13385), done.
      Checking connectivity... done.
                     </literallayout>
-                    The hardware layer now exists with other layers inside
-                    the Poky reference repository on your build host as
-                    <filename>meta-altera</filename> and contains all the
-                    metadata needed to support hardware from Altera, which
-                    is owned by Intel.
+                    现在 <filename>meta-altera</filename> 硬件层与构建主机上的Poky参考库内的
+                    其他层都存储在您的本地，这个硬件层包含支持硬件的所有元数据。此硬件层由Altera提供，
+                    Altera属于Intel。
                     </para></listitem>
                 <listitem><para>
-                    <emphasis>Change the Configuration to Build for a Specific Machine:</emphasis>
-                    The
+                    <emphasis>为构建特定设备更改设置:</emphasis>
+                    <filename>local.conf</filename> 文件中的
                     <ulink url='&YOCTO_DOCS_REF_URL;#var-MACHINE'><filename>MACHINE</filename></ulink>
-                    variable in the <filename>local.conf</filename> file
-                    specifies the machine for the build.
-                    For this example, set the <filename>MACHINE</filename>
-                    variable to "cyclone5".
-                    These configurations are used:
+                    变量指定了构建设备。
+                    在本例中, 将 <filename>MACHINE</filename> 变量设置为 "cyclone5"。
+                    使用如下配置:
                     <ulink url='https://github.com/kraj/meta-altera/blob/master/conf/machine/cyclone5.conf'></ulink>.
-                    <note>
-                        See the
-                        "<link linkend='conf-file-step'>Examine Your Local Configuration File</link>"
-                        step earlier for more information on configuring the
-                        build.
+                    <note><title>注意</title>
+                        有关构建配置的更多信息，请参阅前面的
+                        "<link linkend='conf-file-step'>检查本地配置文件</link>"。
                     </note>
                     </para></listitem>
                 <listitem><para>
-                    <emphasis>Add Your Layer to the Layer Configuration File:</emphasis>
-                    Before you can use a layer during a build, you must add it
-                    to your <filename>bblayers.conf</filename> file, which
-                    is found in the
-                    <ulink url='&YOCTO_DOCS_REF_URL;#build-directory'>Build Directory's</ulink>
-                    <filename>conf</filename> directory.</para>
+                    <emphasis>添加您的层到层配置文件:</emphasis>
+                    在您的构建过程能够使用一个层之前，您必须把层添加到
+                     <filename>bblayers.conf</filename> 文件, 该文件位于
+                    <ulink url='&YOCTO_DOCS_REF_URL;#build-directory'>构建目录下的</ulink>
+                    <filename>conf</filename> 子目录。</para>
 
-                    <para>Use the <filename>bitbake-layers add-layer</filename>
-                    command to add the layer to the configuration file:
+                    <para>使用 <filename>bitbake-layers add-layer</filename>
+                    命令将层添加到配置文件中:
                     <literallayout class='monospaced'>
      $ cd ~/poky/build
      $ bitbake-layers add-layer ../meta-altera
@@ -451,121 +389,89 @@
      Parsing recipes: 100% |##################################################################| Time: 0:00:32
      Parsing of 918 .bb files complete (0 cached, 918 parsed). 1401 targets, 123 skipped, 0 masked, 0 errors.
                     </literallayout>
-                    You can find more information on adding layers in the
-                    "<ulink url='&YOCTO_DOCS_DEV_URL;#adding-a-layer-using-the-bitbake-layers-script'>Adding a Layer Using the <filename>bitbake-layers</filename> Script</ulink>"
-                    section.
+                    有关添加层的更多信息，请参阅
+                    "<ulink url='&YOCTO_DOCS_DEV_URL;#adding-a-layer-using-the-bitbake-layers-script'>使用 <filename>bitbake-layers</filename> 脚本添加层</ulink>"。
                     </para></listitem>
             </orderedlist>
-            Completing these steps has added the
-            <filename>meta-altera</filename> layer to your Yocto Project
-            development environment and configured it to build for the
-            "cyclone5" machine.
-            <note>
-                The previous steps are for demonstration purposes only.
-                If you were to attempt to build an image for the
-                "cyclone5" build, you should read the Altera
-                <filename>README</filename>.
+            完成这些步骤后，
+            <filename>meta-altera</filename> 层被添加到Yocto项目开发环境中，同时构建目标被配置成"cyclone5"设备。
+            <note><title>注意</title>
+                前面的步骤仅用于演示目的。 如果您尝试为 "cyclone5" 构建镜像，您需要阅读
+                Altera <filename>README</filename>。  
             </note>
         </para>
     </section>
 
     <section id='creating-your-own-general-layer'>
-        <title>Creating Your Own General Layer</title>
+        <title>创建您自己的通用层</title>
 
         <para>
-            Maybe you have an application or specific set of behaviors you
-            need to isolate.
-            You can create your own general layer using the
-            <filename>bitbake-layers create-layer</filename> command.
-            The tool automates layer creation by setting up a
-            subdirectory with a <filename>layer.conf</filename>
-            configuration file, a <filename>recipes-example</filename>
-            subdirectory that contains an <filename>example.bb</filename>
-            recipe, a licensing file, and a <filename>README</filename>.
+            也许您需要隔离一个应用程序或一组特定的行为。 
+            您可以使用
+            <filename>bitbake-layers create-layer</filename> 命令来创建一个通用层。
+            该工具是一个层创建的自动化工具，会创建一个子目录包含一个 
+            <filename>layer.conf</filename> 配置文件，
+            一个 <filename>recipes-example</filename> 子目录包含一个 
+            <filename>example.bb</filename> 菜谱, 一个许可文件及一个 <filename>README</filename>.
         </para>
 
         <para>
-            The following commands run the tool to create a layer named
-            <filename>meta-mylayer</filename> in the
-            <filename>poky</filename> directory:
+            以下命令运行该工具以在 <filename>poky</filename> 目录下创建
+            <filename>meta-mylayer</filename> 层:
             <literallayout class='monospaced'>
      $ cd ~/poky
      $ bitbake-layers create-layer meta-mylayer
      NOTE: Starting bitbake server...
      Add your new layer with 'bitbake-layers add-layer meta-mylayer'
             </literallayout>
-            For more information on layers and how to create them, see the
-            "<ulink url='&YOCTO_DOCS_DEV_URL;#creating-a-general-layer-using-the-bitbake-layers-script'>Creating a General Layer Using the <filename>bitbake-layers</filename> Script</ulink>"
-            section in the Yocto Project Development Tasks Manual.
+            有关层及其创建方法的更多信息，请参阅“Yocto项目开发任务手册”的
+            "<ulink url='&YOCTO_DOCS_DEV_URL;#creating-a-general-layer-using-the-bitbake-layers-script'>使用 <filename>bitbake-layers</filename> 脚本创建通用层</ulink>"
+            部分。
         </para>
     </section>
 
     <section id='brief-where-to-go-next'>
-        <title>Where To Go Next</title>
+        <title>更进一步</title>
 
         <para>
-            Now that you have experienced using the Yocto Project, you might
-            be asking yourself "What now?"
-            The Yocto Project has many sources of information including
-            the website, wiki pages, and user manuals:
+            您在这里体验过Yocto项目后，您可能会问自己“然后呢？”。
+            Yocto项目有许多信息来源，包括网站，维基页面和用户手册：
             <itemizedlist>
                 <listitem><para>
-                    <emphasis>Website:</emphasis>
-                    The
-                    <ulink url='&YOCTO_HOME_URL;'>Yocto Project Website</ulink>
-                    provides background information, the latest builds,
-                    breaking news, full development documentation, and
-                    access to a rich Yocto Project Development Community
-                    into which you can tap.
+                    <emphasis>网站:</emphasis>
+                    <ulink url='&YOCTO_HOME_URL;'>Yocto项目网站</ulink>
+                    提供背景信息，最新版本，突发新闻，完整的开发文档，及Yocto项目开发社区入口。
                     </para></listitem>
                 <listitem><para>
-                    <emphasis>Developer Screencast:</emphasis>
-                    The
-                    <ulink url='http://vimeo.com/36450321'>Getting Started with the Yocto Project - New Developer Screencast Tutorial</ulink>
-                    provides a 30-minute video created for users unfamiliar
-                    with the Yocto Project but familiar with Linux build
-                    hosts.
-                    While this screencast is somewhat dated, the
-                    introductory and fundamental concepts are useful for
-                    the beginner.
+                    <emphasis>开发者视频:</emphasis>
+                    <ulink url='http://vimeo.com/36450321'>Yocto项目入门 - 新开发者视频教程</ulink>
+                    为不熟悉Yocto项目但熟悉原生Linux构建主机的用户提供一个30分钟的视频。
+                    虽然这个视频有点过时，但介绍和基本概念对初学者很有用。
                     </para></listitem>
                 <listitem><para>
-                    <emphasis>Yocto Project Overview and Concepts Manual:</emphasis>
-                    The
-                    <ulink url='&YOCTO_DOCS_OM_URL;'>Yocto Project Overview and Concepts Manual</ulink>
-                    is a great place to start to learn about the
-                    Yocto Project.
-                    This manual introduces you to the Yocto Project and its
-                    development environment.
-                    The manual also provides conceptual information for
-                    various aspects of the Yocto Project.
+                    <emphasis>Yocto项目概述和概念手册:</emphasis>
+                    <ulink url='&YOCTO_DOCS_OM_URL;'>Yocto项目概述和概念手册</ulink>
+                    是一个了解Yocto项目的好文档。
+                    该手册向您介绍Yocto项目及其开发环境，还提供了Yocto项目各方面的概念信息。
                     </para></listitem>
                 <listitem><para>
-                    <emphasis>Yocto Project Wiki:</emphasis>
-                    The
-                    <ulink url='&YOCTO_WIKI_URL;'>Yocto Project Wiki</ulink>
-                    provides additional information on where to go next
-                    when ramping up with the Yocto Project, release
-                    information, project planning, and QA information.
+                    <emphasis>Yocto项目维基:</emphasis>
+                    <ulink url='&YOCTO_WIKI_URL;'>Yocto项目维基</ulink>
+                    提供了一些附加信息，包括项目规划，发布信息，和质量保证（QA）信息。
                     </para></listitem>
                 <listitem><para>
-                    <emphasis>Yocto Project Mailing Lists:</emphasis>
-                    Related mailing lists provide a forum for discussion,
-                    patch submission and announcements.
-                    Several mailing lists exist and are grouped according
-                    to areas of concern.
-                    See the
-                    "<ulink url='&YOCTO_DOCS_REF_URL;#resources-mailinglist'>Mailing lists</ulink>"
-                    section in the Yocto Project Reference Manual for a
-                    complete list of Yocto Project mailing lists.
+                    <emphasis>Yocto项目邮件列表:</emphasis>
+                    相关邮件列表提供一个论坛用于讨论，补丁提交和公告。 
+                    存在多个邮件列表，并根据关注的领域进行分组。
+                    Yocto项目邮件列表的完整列表，请参阅“Yocto项目参考手册”的
+                    "<ulink url='&YOCTO_DOCS_REF_URL;#resources-mailinglist'>邮件列表</ulink>"
+                    部分。
                     </para></listitem>
                 <listitem><para>
-                    <emphasis>Comprehensive List of Links and Other Documentation:</emphasis>
-                    The
-                    "<ulink url='&YOCTO_DOCS_REF_URL;#resources-links-and-related-documentation'>Links and Related Documentation</ulink>"
-                    section in the Yocto Project Reference Manual provides a
-                    comprehensive list of all related links and other
-                    user documentation.
+                    <emphasis>链接和其他文档的完整列表:</emphasis>
+                    请参阅“Yocto项目参考手册”的
+                    "<ulink url='&YOCTO_DOCS_REF_URL;#resources-links-and-related-documentation'>链接和相关文档</ulink>"
+                    部分。
                     </para></listitem>
             </itemizedlist>
         </para>
